@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/**/
+
+.selector {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #313539, #111519);
+  color: antiquewhite;
+  border-radius: 15px;
+  border: none;
+  cursor: auto;
+  background-color: #212529;
+  box-shadow: none;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+}
+
+.select_option {
+  background-color: #212529;
+
+}
