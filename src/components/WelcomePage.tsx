@@ -1,6 +1,5 @@
 import "./WelcomePage.css"
-import { BreadCrumbs } from "./BreadCrumbs";
-import { ROUTES, ROUTE_LABELS } from "../modules/MyRoutes";
+import { ROUTES } from "../modules/MyRoutes";
 import { Link } from "react-router-dom";
 
 

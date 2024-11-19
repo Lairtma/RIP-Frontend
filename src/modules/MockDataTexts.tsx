@@ -9,7 +9,7 @@ export const MOCK_DATA_TEXTS : ApiResponse = {
             id: 1,
             enc: true,
             text: "Текст:\nПривет, мир!",
-            img: "http://localhost:9000/lab1/hello_world_ru.png",
+            img: "",
             byteLen: 21,
             status: true,
         },
@@ -30,7 +30,7 @@ export const MOCK_DATA_TEXTS : ApiResponse = {
             id: 3,
             enc: true,
             text: "Текст:\nHello, world!",
-            img: "http://localhost:9000/lab1/hello_world_en.png",
+            img: "",
             byteLen: 13,
             status: true,
     

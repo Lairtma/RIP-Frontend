@@ -6,7 +6,7 @@ import { TextInfoPage } from './components/TextInfoPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/RIP-Frontend">
     <Routes>
       <Route path={ROUTES.HOME} index element={<WelcomePage />} />
       <Route path={ROUTES.TEXTS} element={<MainPageTexts />} />

@@ -5,22 +5,16 @@
   border: none;
 }
 
-.cards{
-  display: grid;
-  padding: 0px 5%;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 20px;
-}
-
 .card{
   border: solid white;
   border-radius: 20px;
   margin: 1%;
   padding: 1% 5%;
+  height: 280px;
   display: flex;
   flex-direction: column;
-  width: 80%;
   justify-content: space-between;
+  flex: 1 1 200px;
 }
 .card_img{
   margin-top: 20px;
@@ -72,8 +66,4 @@
   color: white;
   border-radius: 15px;
   border: none;
-}
-
-.card_text.text pre {
-  
 }

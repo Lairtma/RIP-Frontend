@@ -11,23 +11,25 @@ body {
 }
 
   .MP_breadcrumbs{
-    margin-top: 2%;
     display: flex;
     justify-content: flex-start;
     padding-left: 2%;
+    margin-bottom: 20px;
   }
 
   .MP_Finder {
     display: flex;
     justify-content: flex-start;
     padding-left: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    margin-bottom: 10px;
   }
 
   .cards{
     display: grid;
     padding: 0px 5%;
-    grid-template-columns: repeat(4, 1fr);
-    row-gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
   }

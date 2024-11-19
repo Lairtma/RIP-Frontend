@@ -2,12 +2,12 @@ import "./MainPageTexts.css"
 import { BreadCrumbs } from "./components/BreadCrumbs"
 import { ROUTES, ROUTE_LABELS } from "./modules/MyRoutes"
 import FinderItem from "./components/FinderItem"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getTextById, getTextByType } from "./modules/MyApiTexts";
-import { Text, ApiResponse } from "./modules/MyInterface";
+import { getTextByType } from "./modules/MyApiTexts";
+import { Text } from "./modules/MyInterface";
 import { OneTextItem } from "./components/OneTextItem";
-import { MyOwnHeader } from "./components/MyOwnHeader";
+import { Navbar } from "./components/Navbar";
 
 
 
@@ -18,7 +18,6 @@ export const MainPageTexts = () => {
     const [texts, SetText] = useState<Text[]>([])
     const navigate = useNavigate();
 
-    const [isLogin, setIsLogin] = useState(false)
 
     useEffect(() => {
         getTextByType(searchType).then((test) => {
@@ -26,11 +25,6 @@ export const MainPageTexts = () => {
         });
     }, [searchType])
 
-    const onSubmitFinderHandler = () => {
-
-        STT('')
-
-    }
 
     const cardClickHandler = (text_id: number) => {
 
@@ -38,16 +32,27 @@ export const MainPageTexts = () => {
 
     }
 
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker
+            .register("/RIP-frontend/serviceWorker.js")
+            .then(res => console.log("service worker registered", res))
+            .catch(err => console.log("service worker not registered", err))
+        })
+      }
+
     return (
 
         <header>
+            <div>
+                <Navbar />
+            </div>
 
             <div className="MP_breadcrumbs">
                 <BreadCrumbs
                     crumbs={[{ label: ROUTE_LABELS.TEXTS }]}
                 />
             </div>
-
 
 
             <div className="MP_Finder">

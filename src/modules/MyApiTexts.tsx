@@ -11,8 +11,7 @@ export const getTextByType = async (
 
     try {
 
-      //const response = await fetch(`/api/texts?type=${textType}`);
-      const response = await fetch("http://localhost:8080/texts");
+      const response = await fetch("/api/texts");
       const info = await response.json();
       return { Texts: info["texts"] };
     } 
@@ -33,7 +32,6 @@ export const getTextById = async (
 
     try {
       const response = await fetch(`http://localhost:8080/texts/${text_id}`);
-      const info = await response.json();
       return await response.json();
     } 
     catch(error) {

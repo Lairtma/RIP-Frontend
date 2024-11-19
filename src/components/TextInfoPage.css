@@ -28,7 +28,8 @@ body {
 }
 
 .selector_one {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 50px;
     border-radius: 5px;
     font-size: 22px;
@@ -99,4 +100,19 @@ body {
 .description_one {
     color: white;
     font-size: 26px;
+}
+@media (max-width: 720px) {
+    .card_one {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px 0
+    }
+
+    .card_img_one, .info_one {
+        width: 100%;
+        
+    }
+    .card_img_one {
+        margin-top: 10px;
+    }
 }

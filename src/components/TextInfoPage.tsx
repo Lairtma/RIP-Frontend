@@ -3,9 +3,9 @@ import { BreadCrumbs } from "./BreadCrumbs"
 import { ROUTE_LABELS, ROUTES } from "../modules/MyRoutes"
 import { getTextById } from "../modules/MyApiTexts"
 import { Text } from "../modules/MyInterface"
-import { Link, useParams } from "react-router-dom"
-import { MyOwnHeader } from "./MyOwnHeader"
+import { useParams } from "react-router-dom"
 import "./TextInfoPage.css"
+import { Navbar } from "./Navbar";
 
 
 export const TextInfoPage: FC = () => {
@@ -33,7 +33,7 @@ export const TextInfoPage: FC = () => {
         <>
 
 
-
+            <Navbar />
             <div className="MP_breadcrumbs">
                 <BreadCrumbs
                     crumbs={[

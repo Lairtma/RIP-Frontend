@@ -1,0 +1,15 @@
+{
+    "name": "Encryption error",
+    "short_name": "Encryption error",
+    "start_url": "/RIP-Frontend",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#db4938",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "/RIP-Frontend/logo.svg",
+        "type": "image/png", "sizes": "512x512"
+      }
+    ]
+  }
