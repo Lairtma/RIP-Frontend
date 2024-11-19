@@ -8,23 +8,39 @@ import { getTextByType } from "./modules/MyApiTexts";
 import { Text } from "./modules/MyInterface";
 import { OneTextItem } from "./components/OneTextItem";
 import { Navbar } from "./components/Navbar";
-
+import { setfilteredTexts  } from "./slices/dataSlice";
+import { RootState } from "./store";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export const MainPageTexts = () => {
 
-    const [searchType, STT] = useState('')
-
-    const [texts, SetText] = useState<Text[]>([])
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // Извлекаем данные из Redux
+    const { textType, filteredTexts } = useSelector((state: RootState) => state.search);
+    
+    // Состояние для отображения продуктов
+    const [texts, setTexts] = useState<Text[]>(filteredTexts || []); // Изначально используем filteredProducts
 
     useEffect(() => {
-        getTextByType(searchType).then((test) => {
-            SetText(test.Texts);
-        });
-    }, [searchType])
+        // Если фильтрованные продукты уже есть в Redux, их можно сразу отобразить
+        if (filteredTexts.length > 0) {
+            setTexts(filteredTexts);
+        } else {
+            // Если нет фильтрованных продуктов, загружаем все
+            getTextByType("").then((result) => {
+                setTexts(result.Texts); // Заменяем на правильный тип данных
+            });
+        }
+    }, [filteredTexts]); // Перезапускаем useEffect, если filteredProducts изменились
 
+    useEffect(() => {
+        getTextByType(textType).then((test) => {
+            dispatch(setfilteredTexts(test.Texts));
+        });
+    }, [textType])
 
     const cardClickHandler = (text_id: number) => {
 
@@ -58,8 +74,8 @@ export const MainPageTexts = () => {
             <div className="MP_Finder">
 
                 <FinderItem
-                    TextType={searchType}
-                    setTextType={STT}
+                    TextType={textType}
+                    dispatch={dispatch}
                 />
 
             </div>
