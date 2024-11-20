@@ -31,8 +31,9 @@ export const getTextById = async (
   Promise<Text> => {
 
     try {
-      const response = await fetch(`http://localhost:8080/texts/${text_id}`);
-      return await response.json();
+      const response = await fetch(`/api/texts/${text_id}`);
+      const info = await response.json();
+      return info["text"];
     } 
     catch(error) {
       return MOCK_DATA_TEXTS.Texts[Number(text_id) - 1]

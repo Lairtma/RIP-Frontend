@@ -26,10 +26,10 @@ export const BreadCrumbs: FC<BreadCrumbsProps> = (props) => {
           <React.Fragment key={index}>
             <li className="slash">/</li>
             {index === crumbs.length - 1 ? (
-              <li>{crumb.label}</li>
+              <li>{crumb.label.replace("/n", "")}</li>
             ) : (
               <li>
-                <Link to={crumb.path || ""}>{crumb.label}</Link>
+                <Link to={crumb.path || ""}>{crumb.label.replace("/n", "")}</Link>
               </li>
             )}
           </React.Fragment>

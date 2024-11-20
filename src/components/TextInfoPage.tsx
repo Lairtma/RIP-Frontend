@@ -49,7 +49,7 @@ export const TextInfoPage: FC = () => {
                     <div className="card_one">
                         <img src={image} className="card_img_one" />
                             <div className="info_one">
-                                <p className="card_text_one text">{textInfo.text}</p>
+                                <pre className="card_text_one text">{textInfo.text.replace("/n", "\n")}</pre>
                                 <select name="type" id="type" className="selector_one btn_one text_one">
                                     {textInfo.enc ? (
                                         <option value="encryption">Изначальный</option>
