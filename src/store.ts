@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./slices/dataSlice"; // Импортируйте ваш searchSlice
+import orderReducer from "./slices/orderSlice"; // Импортируйте ваш searchSlice
 
 export const store = configureStore({
     reducer: {
         search: searchReducer, // Добавьте редьюсер поисковой строки
+        order: orderReducer
     },
 });
 

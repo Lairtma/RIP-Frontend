@@ -3,7 +3,7 @@ import { BreadCrumbs } from "./BreadCrumbs"
 import { ROUTE_LABELS, ROUTES } from "../modules/MyRoutes"
 import { getTextById } from "../modules/MyApiTexts"
 import { Text } from "../modules/MyInterface"
-import { useParams } from "react-router-dom"
+import { useParams  } from "react-router-dom"
 import "./TextInfoPage.css"
 import { Navbar } from "./Navbar";
 

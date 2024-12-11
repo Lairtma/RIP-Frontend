@@ -24,5 +24,6 @@ const searchSlice = createSlice({
     },
 });
 
+
 export const { setTextType, setfilteredTexts } = searchSlice.actions;
 export default searchSlice.reducer;
