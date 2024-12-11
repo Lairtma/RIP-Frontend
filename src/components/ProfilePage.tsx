@@ -1,19 +1,14 @@
 import "./ProfilePage.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { ROUTES, ROUTE_LABELS  } from "../modules/MyRoutes";
 import { api } from "../api"; // Импорт API
 import { BreadCrumbs } from "./BreadCrumbs"
 import { Navbar } from "./Navbar";
 
 export const ProfilePage = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem("token"));
-    const [login, setLogin] = useState<string>(localStorage.getItem("login") || "");
     const [oldPassword, setOldPassword] = useState<string>("");
     const [newPassword, setNewPassword] = useState<string>("");
     const [message, setMessage] = useState<string>("");
-
-    const navigate = useNavigate();
 
     // Проверка авторизации
     const token = localStorage.getItem("token");

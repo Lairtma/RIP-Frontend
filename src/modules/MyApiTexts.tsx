@@ -21,7 +21,7 @@ export const getTextByType = async (
           return { Texts: response.data["texts"], OrderId: response.data["text_req_ID"], TextsInOrderCount: response.data["count"] };
       }
       else{
-        const response = await fetch("/api/texts?type=" + textType);
+        const response = await fetch("http://localhost:8001/api/texts?type=" + textType);
         const info = await response.json();
         return { Texts: info["texts"], OrderId: info["text_req_ID"], TextsInOrderCount: info["count"] };
       }
@@ -42,7 +42,7 @@ export const getTextById = async (
   Promise<Text> => {
 
     try {
-      const response = await fetch(`/api/texts/${text_id}`);
+      const response = await fetch(`http://localhost:8001/api/texts/${text_id}`);
       const info = await response.json();
       return info["text"];
     } 

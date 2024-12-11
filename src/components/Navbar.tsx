@@ -25,6 +25,7 @@ export const Navbar = () => {
       localStorage.removeItem("login");
       setIsAuthenticated(false);
       dispatch(setTextType(""));
+      console.log(count);
       setLogin("");
       api.api.orderDelete(id, {}, {
         headers: {

@@ -57,7 +57,7 @@ export const TextInfoPage: FC = () => {
                                         <option value="decryption">Зашифрованный</option>
                                     )}
                                 </select>
-                                <p className="text_one description_one">Длина в байтах: {textInfo.byteLen}</p>
+                                <p className="text_one description_one">Длина в байтах: {textInfo.byte_len}</p>
                             </div>
                     </div>
                 </div>

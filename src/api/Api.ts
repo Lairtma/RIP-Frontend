@@ -10,13 +10,13 @@
  */
 
 export interface DsEncOrDecOrder {
-  creator: DsUsers;
+  Creator: DsUsers;
   creator_id: number;
   date_create: string;
   date_finish: string;
   date_update: string;
   id: number;
-  moderator: DsUsers;
+  Moderator: DsUsers;
   moderator_id: number;
   priority: number;
   status: number;

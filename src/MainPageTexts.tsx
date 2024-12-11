@@ -37,6 +37,7 @@ export const MainPageTexts = () => {
                 dispatch(setCount(result.TextsInOrderCount));
                 dispatch(setId(result.OrderId));
                 setOrderID(result.OrderId);
+                console.log(TextsInOrderCount);
                 setTextsInOrderCount(result.TextsInOrderCount);
             });
         }

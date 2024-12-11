@@ -2,6 +2,8 @@ import { ApiResponse } from "./MyInterface";
 
 
 export const MOCK_DATA_TEXTS : ApiResponse = {
+    OrderId: 0,
+	TextsInOrderCount: 0,
     Texts : [
 
         {
@@ -10,7 +12,7 @@ export const MOCK_DATA_TEXTS : ApiResponse = {
             enc: true,
             text: "Текст:\nПривет, мир!",
             img: "",
-            byteLen: 21,
+            byte_len: 21,
             status: true,
         },
     
@@ -20,7 +22,7 @@ export const MOCK_DATA_TEXTS : ApiResponse = {
             enc: false,
             text: "Текст:\n1111 0001 1111 0000 1111 1010 1100",
             img: "",
-            byteLen: 28,
+            byte_len: 28,
             status: true,
     
         },
@@ -31,7 +33,7 @@ export const MOCK_DATA_TEXTS : ApiResponse = {
             enc: true,
             text: "Текст:\nHello, world!",
             img: "",
-            byteLen: 13,
+            byte_len: 13,
             status: true,
     
         }
