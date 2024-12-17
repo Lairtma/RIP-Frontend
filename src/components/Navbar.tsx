@@ -14,7 +14,7 @@ export const Navbar = () => {
   
   const { id, count } = useSelector((state: RootState) => state.order);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem("token"));
-  const [login, setLogin] = useState<string>(localStorage.getItem("login") || "");
+  const [login, setLogin] = useState<string>(localStorage.getItem("login") || "Утеряно");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,7 +45,8 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-  }, [id]); // Перезапускаем useEffect, если filteredProducts изменились
+    setLogin(localStorage.getItem("login") || "Утеряно");
+  });
 
   return (
     <nav className='nav'>
@@ -57,6 +58,7 @@ export const Navbar = () => {
             <NavLink to={ROUTES.PROFILE} className='nav__link'>{login}</NavLink>
             <Button className='nav__link' onClick={handleAuthButtonClick}>Выход</Button>
             <NavLink to={ROUTES.TEXTS} className='nav__link'>Тексты</NavLink>
+            <NavLink to={ROUTES.REQUESTS} className='nav__link'>Заявки</NavLink>
             <NavLink to={ROUTES.ORDER + "/" + id} className='nav__link' hidden={id === 0}>Корзина</NavLink>
           </div>
         ) : (
@@ -84,6 +86,7 @@ export const Navbar = () => {
               <NavLink to={ROUTES.PROFILE} className='nav__link'>{login}</NavLink>
               <Button className='nav__link' onClick={handleAuthButtonClick}>Выход</Button>
               <NavLink to={ROUTES.TEXTS} className='nav__link'>Тексты</NavLink>
+              <NavLink to={ROUTES.REQUESTS} className='nav__link'>Заявки</NavLink>
               <NavLink to={ROUTES.ORDER + "/" + id} className='nav__link' hidden={id === 0}>Корзина</NavLink>
             </div>
           ) : (

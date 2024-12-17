@@ -24,6 +24,10 @@ function App() {
      }
    }, []);
 
+   useEffect(() => {
+    return localStorage.removeItem("login");
+  });
+
   return (
     <BrowserRouter basename="/RIP-Frontend">
     <Routes>
