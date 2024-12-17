@@ -25,7 +25,7 @@ function App() {
    }, []);
 
   return (
-    <BrowserRouter basename="/RIP-Frontend">
+    <BrowserRouter basename="/">
     <Routes>
       <Route path={ROUTES.HOME} index element={<WelcomePage />} />
       <Route path={ROUTES.TEXTS} element={<MainPageTexts />} />
