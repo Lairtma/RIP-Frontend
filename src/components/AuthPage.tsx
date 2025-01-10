@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES, ROUTE_LABELS } from "../modules/MyRoutes";
-import { api } from '../api';  // Путь к сгенерированному Api
+import { loginUser } from "../modules/MyApiTexts";
 import { BreadCrumbs } from "./BreadCrumbs"
 import { Navbar } from "./Navbar";
+import { useDispatch  } from "react-redux";
+import { AppDispatch } from "../store";
 import "./AuthPage.css";
 
 // Определяем тип данных ответа, который возвращается с сервера
@@ -16,27 +18,21 @@ export const AuthPage: FC = () => {
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
 
     // Функция для обработки авторизации
     const handleAuth = async () => {
-        try {
-            const response = await api.api.loginUserCreate({
-                login,
-                password,
-            });
-            const data = response.data as LoginUserResponse;
-
-            if (data.token) {
+        dispatch(loginUser({ login, password}))
+            .unwrap()
+            .then((data) => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('login', login); // пример записи после авторизации
                 navigate(ROUTES.TEXTS);
-            }
-        } catch (err: any) {
-            // Обрабатываем ошибку авторизации
-            if (err.response?.data?.error) {
-                setError(err.response.data.error); // Отображаем сообщение об ошибке
-            }
-        }
+            
+            })
+            .catch(() => {
+
+            });
     };
 
     return (

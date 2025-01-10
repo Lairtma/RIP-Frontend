@@ -1,7 +1,28 @@
 import { Text, ApiResponse, OrderResponse } from "./MyInterface";
 import { MOCK_DATA_TEXTS } from "./MockDataTexts";
 import { api } from '../api';  // Путь к сгенерированному Api
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
+
+interface LoginPayload {
+  login: string;
+  password: string;
+}
+
+interface LoginUserResponse {
+  token: string
+}
+
+export const loginUser = createAsyncThunk<LoginUserResponse, LoginPayload>(
+  "auth/loginUser",
+  async ({login, password}, { rejectWithValue }) => {
+    try {
+        const response = await api.api.loginUserCreate({login, password});
+        return response.data as LoginUserResponse;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.error || "Authorization error");
+    }
+  }
+);
 
 export const getTextByIdThunk = createAsyncThunk<Text | null, string | number>(
   'texts/getByID',

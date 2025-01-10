@@ -6,6 +6,7 @@ import { api } from "../api"; // Импорт API
 import { BreadCrumbs } from "./BreadCrumbs"
 import { Navbar } from "./Navbar";
 
+
 export const ProfilePage = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem("token"));
     const [login, setLogin] = useState<string>(localStorage.getItem("login") || "");

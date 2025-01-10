@@ -69,6 +69,7 @@ export const OrderPage: FC = () => {
         }
     };
 
+    
     // Обработчик удаления заявки
     const handleDeleteBasket = async () => {
         try {

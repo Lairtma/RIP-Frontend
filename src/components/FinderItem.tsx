@@ -16,9 +16,7 @@ const FinderItem: FC<Props> = ({ TextType, dispatch}) => (
             <option className="select_option" value="en" >Изначальный</option>
             <option className="select_option" value="de" >Закодированный</option>
         </select>
-    </div>
-
-    
+    </div>    
 )
 
 export default FinderItem

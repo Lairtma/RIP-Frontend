@@ -9,6 +9,7 @@ interface OneTextItemTypes {
     checkAndUpdateOrderID: () => Promise<void>;
 }
 
+
 export const OneTextItem: FC<OneTextItemTypes> = ({
     text,
     btnClickHandler,
