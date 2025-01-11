@@ -21,19 +21,18 @@ export const AuthPage: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     // Функция для обработки авторизации
-    const handleAuth = async () => {
-        dispatch(loginUser({ login, password}))
-            .unwrap()
-            .then((data) => {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('login', login); // пример записи после авторизации
-                navigate(ROUTES.TEXTS);
+    const handleAuth = () => {
+        dispatch(loginUser({ login, password }))
+          .unwrap()
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("login", login);
+            navigate(ROUTES.HOME);
+          })
+          .catch(() => {
             
-            })
-            .catch(() => {
-
-            });
-    };
+          });
+      };
 
     return (
         <div>

@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Text } from "../modules/MyInterface";
 import "./OneTextItem.css";
-import { api } from "../api"; // Импорт API
+import { useDispatch } from 'react-redux'; // Используем useDispatch для получения функции dispatch
+import { addTextToOrder } from "../modules/thunks/addTextToOrderThunk"; // Импорт вашего thunks
 
 interface OneTextItemTypes {
     text: Text;
@@ -16,13 +17,7 @@ export const OneTextItem: FC<OneTextItemTypes> = ({
     checkAndUpdateOrderID
 }: OneTextItemTypes) => {
     const token = localStorage.getItem("token");
-    let image: string = "";
-
-    if (text.img === undefined || text.img === "") {
-        image = "no-image-text.png";
-    } else {
-        image = text.img;
-    }
+    const dispatch = useDispatch(); // Используем useDispatch для получения функции dispatch
 
     const handleAddText = async () => {
         if (!token) {
@@ -31,32 +26,19 @@ export const OneTextItem: FC<OneTextItemTypes> = ({
         }
 
         try {
-            // Проверяем и обновляем milkRequestID, если нужно
-
-            const response = await api.api.textToOrderCreate(
-                String(text.id),
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            console.log("Текст успешно добавлен в заявку:", response.data);
+            //@ts-ignore
+            dispatch(addTextToOrder({ textId: (text.id), token }));
+            console.log("Текст успешно добавлен в запрос");
             await checkAndUpdateOrderID();
-        } catch (err: any) {
-            if (err.response?.data?.message) {
-                console.error("Ошибка при добавлении текста:", err.response.data.message);
-            } else {
-                console.error("Произошла неизвестная ошибка:", err);
-            }
+        } catch (err) {
+            console.error("Произошла ошибка при добавлении текста:", err);
         }
     };
-
 
     return (
         <div className="card">
             <div className="info">
-                <img src={image} className="card_img" alt="Text Image" />
+                <img src={text.img} className="card_img" alt="Text Image" />
                 <p className="card_text text_card">
                     {text.enc ? "Изначальный" : "Закодированный"}
                 </p>

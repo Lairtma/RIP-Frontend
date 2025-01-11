@@ -437,7 +437,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     orderTextDelete: (
       id: string,
       query?: {
-        id?: string;
+        id?: number;
         text_id?: number;
       },
       params: RequestParams = {},

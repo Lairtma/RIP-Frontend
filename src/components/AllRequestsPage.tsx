@@ -2,57 +2,29 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES, ROUTE_LABELS } from "../modules/MyRoutes";
 import { BreadCrumbs } from "../components/BreadCrumbs";
-import { api } from "../api";  // Путь к сгенерированному Api
+import { fetchRequestsThunk } from "../modules/thunks/allreqsThunk";
 import { Navbar } from "./Navbar";
 import "./AllRequestsPage.css"; // Подключение стилей
 import { DsEncOrDecOrder } from "../api/Api";
+import { useDispatch } from "react-redux";
 
 export const AllRequestPage = () => {
     const [requests, setRequests] = useState<DsEncOrDecOrder[]>([]); // Стейт для хранения списка заявок
     const [loading, setLoading] = useState<boolean>(true); // Стейт для загрузки
     const [error, setError] = useState<string | null>(null); // Стейт для ошибки
     const navigate = useNavigate();
-
-    // Получаем токен из localStorage
-    const token = localStorage.getItem('token');
-
-    // Вызов API для получения заявок
-    const fetchRequests = async () => {
-        try {
-            if (token) {
-                // Отправляем запрос с Bearer токеном и статусом 7 в query параметре
-                const response = await api.api.orderList(
-                    { status: "3",
-                         is_status: true }, // Передаем статус 7 в query
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`, // Используем Bearer Auth
-                        }
-                    }
-                );
-                console.log(response)
-                const Orders = response.data["Orders"] || []; // Используем пустой массив по умолчанию
-                console.log(Orders)
-                setRequests(Orders);  
-            } else {
-                setError("Токен не найден.");
-            }
-        } catch (err) {
-            console.error("Ошибка при загрузке заявок:", err);
-            setError("Произошла ошибка при загрузке заявок.");
-        } finally {
-            setLoading(false); // Завершаем загрузку
-        }
-    };
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchRequests();
-    }, []); // Вызываем fetchRequests один раз при монтировании компонента
+        //@ts-ignore
+        dispatch(fetchRequestsThunk());
+    }, [dispatch]);
 
-    // Функция для форматирования даты
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+        return `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")}.${date.getFullYear()}`;
     };
 
     if (loading) {
@@ -62,6 +34,23 @@ export const AllRequestPage = () => {
     if (error) {
         return <div className="error-message">{error}</div>;
     }
+
+    const statusToText = (status: number): string => {
+        switch (status) {
+            case 0:
+                return "Черновик";
+            case 1:
+                return "Сформирована";
+            case 2:
+                return "Завершена";
+            case 3:
+                return "Удалена";
+            case 4:
+                return "Отклонена";
+            default:
+                return "Отклонена";
+        }
+    };
 
     return (
         <div className="all-requests-page">
